@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Coral Bleaching Computer Vision - Tiago Fernandez-Nespral</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="../index.html">Tiago Fernandez-Nespral</a>
+      <div class="nav-links">
+        <a href="../index.html#projects">Projects</a>
+        <a href="https://github.com/Tne-5/coral-bleaching-cv">Repository</a>
+      </div>
+    </nav>
+  </header>
+  <main class="wrap">
+    <section class="project-title">
+      <p class="eyebrow">Computer vision - PyTorch - DC3</p>
+      <h1>Coral Bleaching Computer Vision</h1>
+      <p class="lead">A PyTorch image-classification pipeline for detecting coral bleaching, using a ResNet18 backbone modified with a custom saturation channel, attention pooling, and BCE/focal-loss training. The final run reached 0.969 test AUC.</p>
+    </section>
+    <section class="project-page detail-grid">
+      <div>
+        <h2>Problem</h2>
+        <p>Coral bleaching detection is visually subtle: lighting, underwater color casts, image borders, duplicates, and ambiguous labels can all mislead a model. The project goal was not only to classify images, but to produce a training pipeline with enough preprocessing, split control, and output inspection to trust the result.</p>
+
+        <h2>Approach</h2>
+        <p>I used a ResNet18 backbone and expanded the first convolution to accept a fourth channel: HSV saturation. This let the model learn from RGB appearance while keeping a domain-relevant bleaching signal available. The model also used masked attention pooling so feature focus could avoid border artifacts and produce heatmap-style inspection outputs.</p>
+
+        <pre><code>image folders -> duplicate pruning -> resize/split
+             -> 4-channel transforms -> ResNet18 + attention pooling
+             -> BCE/focal loss -> validation AUC checkpoint
+             -> test heatmaps + prediction CSV</code></pre>
+
+        <h2>Engineering details</h2>
+        <p>The cleaned repository excludes the image dataset, trained weights, and generated heatmap folders. It keeps the reusable training/model code, data-preparation script, requirements, and documentation so the pipeline can be rerun with local data.</p>
+      </div>
+      <aside class="panel">
+        <h2>Evidence</h2>
+        <ul>
+          <li>0.969 AUC on test data from final run.</li>
+          <li>Custom 4-channel input with saturation.</li>
+          <li>Attention pooling with valid-pixel mask.</li>
+          <li>Grouped train/validation/test split to reduce leakage.</li>
+          <li>Heatmap outputs for model inspection.</li>
+        </ul>
+        <p><a class="repo-link" href="https://github.com/Tne-5/coral-bleaching-cv">Open repository</a></p>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>
+
