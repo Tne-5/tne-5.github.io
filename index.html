@@ -18,77 +18,84 @@
   </header>
 
   <main>
-    <article class="intro">
-      <h1>Welcome</h1>
+    <section class="intro" aria-labelledby="intro-title">
+      <p class="kicker">Project archive</p>
+      <h1 id="intro-title">Applied data science projects, written as technical notes.</h1>
       <p>
-        Hi. I am a Data Science student at TU/e. This site is a small archive of projects I have built:
-        applied ML systems, geospatial models, computer vision pipelines, and practical prototypes.
+        A compact archive of systems I have built: what the problem was, how the approach works,
+        and what the final artifact does.
       </p>
-      <p>Mostly notes on what the problem was, how the system works, and what I learned while building it.</p>
-    </article>
+    </section>
 
-    <section id="projects" class="project-index">
-      <h2>Projects</h2>
+    <section id="projects" class="projects" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <h2 id="projects-title">Projects</h2>
+        <p>Newest first.</p>
+      </div>
 
-      <article class="project-row">
-        <time>Year 2</time>
-        <div>
-          <h3><a href="projects/twitter-chatbot.html">Airline Twitter Complaint Chatbot</a></h3>
-          <ul class="tags">
-            <li>nlp</li>
-            <li>side-project</li>
-          </ul>
-          <p>
-            A complaint-triage prototype that filters noisy airline tweets, classifies issue type, and drafts support-style responses.
-          </p>
-        </div>
-      </article>
-
-      <article class="project-row">
-        <time>Year 3</time>
-        <div>
-          <h3><a href="projects/burglary-hotspot.html">Burglary Hotspot Forecasting</a></h3>
-          <ul class="tags">
-            <li>academic</li>
-            <li>geospatial-ml</li>
-          </ul>
-          <p>
-            A London residential burglary forecasting system using 500m grid cells, ConvLSTM modeling, and patrol allocation.
-          </p>
-        </div>
-      </article>
-
-      <article class="project-row">
-        <time>Year 4</time>
-        <div>
-          <h3><a href="projects/coral-bleaching.html">Coral Bleaching Computer Vision</a></h3>
-          <ul class="tags">
-            <li>computer-vision</li>
-            <li>pytorch</li>
-          </ul>
-          <p>
-            A ResNet18 image-classification pipeline adapted with a saturation channel and attention-style inspection outputs.
-          </p>
-        </div>
-      </article>
-
-      <article class="project-row">
-        <time>Year 4</time>
-        <div>
+      <article class="project">
+        <div class="project-time">Year 3</div>
+        <div class="project-main">
           <h3><a href="projects/porous-media-flow.html">Machine Learning: Porous Media Flow</a></h3>
-          <ul class="tags">
-            <li>machine-learning</li>
-            <li>u-net</li>
-          </ul>
-          <p>
-            A structured regression project predicting flow fields through porous cross-sections with CNN and U-Net models.
+          <p class="project-summary">
+            Structured regression for predicting flow fields through porous cross-sections with CNN and U-Net models.
           </p>
+          <ul class="tags" aria-label="Project tags">
+            <li>machine learning</li>
+            <li>u-net</li>
+            <li>physics data</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-time">Year 3</div>
+        <div class="project-main">
+          <h3><a href="projects/coral-bleaching.html">Coral Bleaching Computer Vision</a></h3>
+          <p class="project-summary">
+            ResNet18 image classification with a saturation channel, attention-style inspection, and a 0.969 test AUC.
+          </p>
+          <ul class="tags" aria-label="Project tags">
+            <li>computer vision</li>
+            <li>pytorch</li>
+            <li>model inspection</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-time">Year 2</div>
+        <div class="project-main">
+          <h3><a href="projects/burglary-hotspot.html">Burglary Hotspot Forecasting</a></h3>
+          <p class="project-summary">
+            London residential burglary forecasting with 500m grid cells, ConvLSTM modeling, and patrol allocation.
+          </p>
+          <ul class="tags" aria-label="Project tags">
+            <li>geospatial ml</li>
+            <li>convlstm</li>
+            <li>allocation</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-time">Year 1</div>
+        <div class="project-main">
+          <h3><a href="projects/twitter-chatbot.html">Airline Twitter Complaint Chatbot</a></h3>
+          <p class="project-summary">
+            Complaint triage over airline tweets using sentiment filtering, zero-shot routing, and response templates.
+          </p>
+          <ul class="tags" aria-label="Project tags">
+            <li>nlp</li>
+            <li>transformers</li>
+            <li>prototype</li>
+          </ul>
         </div>
       </article>
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <a href="https://github.com/Tne-5">GitHub</a>
     <span>/</span>
     <a href="https://www.linkedin.com/in/tnespral/">LinkedIn</a>
