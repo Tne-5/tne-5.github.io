@@ -3,48 +3,87 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Porous media flow U-Net project page.">
-  <title>Porous Media Flow U-Net - Tne-5 Project Archive</title>
+  <meta name="description" content="Machine learning porous media flow project notes.">
+  <title>Machine Learning: Porous Media Flow</title>
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
   <header class="site-header">
-    <nav class="nav" aria-label="Primary">
-      <a class="brand" href="../index.html">Tne-5</a>
-      <div class="nav-links">
-        <a href="../index.html#project-index">Projects</a>
-        <a href="https://github.com/Tne-5/porous-media-flow-unet">Repository</a>
-      </div>
+    <a class="site-title" href="../index.html">Tiago Fernandez-Nespral</a>
+    <nav aria-label="Site links">
+      <a href="../index.html#projects">Projects</a>
+      <a href="https://github.com/Tne-5/porous-media-flow-unet">Repository</a>
     </nav>
   </header>
-  <main class="wrap">
-    <section class="project-title">
-      <p class="eyebrow">Machine Learning final assignment / PyTorch</p>
-      <h1>Porous Media Flow U-Net</h1>
-      <p class="lead">A structured image-to-image regression project for predicting flow fields through porous cross-sections.</p>
-    </section>
-    <section class="project-page detail-grid">
-      <div>
-        <h2>Problem</h2>
-        <p>Given binary cross-section masks and physical parameters, predict the full 2D flow field through a porous medium.</p>
-        <h2>Approach</h2>
-        <p>The cleaned implementation normalizes labels by a physical scale, trains U-Net variants, masks closed pixels, and averages predictions over horizontal, vertical, and 180-degree symmetries.</p>
-        <pre><code>mask + parameters -> physical scaling q0
-                  -> dimensionless target q*
-                  -> U-Net prediction
-                  -> symmetry-averaged output</code></pre>
-      </div>
-      <aside class="panel">
-        <h2>Highlights</h2>
-        <ul>
-          <li>Structured image-to-image regression</li>
-          <li>Dimensionless target normalization</li>
-          <li>Custom boundary-channel U-Net</li>
-          <li>Symmetry-aware ensembling</li>
+
+  <main>
+    <article>
+      <header class="post-header">
+        <h1>Machine Learning: Porous Media Flow</h1>
+        <p class="post-meta">Year 4 / machine learning final assignment / PyTorch</p>
+        <ul class="tags">
+          <li>u-net</li>
+          <li>structured-regression</li>
+          <li>physics-data</li>
         </ul>
-        <p><a class="repo-link" href="https://github.com/Tne-5/porous-media-flow-unet">Open repository</a></p>
-      </aside>
-    </section>
+        <div class="post-links">
+          <a href="https://github.com/Tne-5/porous-media-flow-unet">Code</a>
+          <a href="../index.html#projects">Back to projects</a>
+        </div>
+      </header>
+
+      <p>
+        This project predicts flow fields through porous cross-sections. Unlike a normal classification task, the output is
+        a full 2D field, so the model has to preserve spatial structure from input to output.
+      </p>
+
+      <h2>Problem</h2>
+      <p>
+        The input is a porous geometry and physical parameters. The target is the corresponding flow field. Closed pixels
+        should remain physically meaningful, and the model should generalize across different obstacle arrangements.
+      </p>
+
+      <h2>Modeling approach</h2>
+      <figure>
+        <pre><code>binary geometry + parameters
+  -> physical scaling q0
+  -> dimensionless target q*
+  -> CNN / U-Net prediction
+  -> mask closed pixels
+  -> symmetry-averaged output</code></pre>
+        <figcaption>The U-Net structure is useful because it combines local details with larger spatial context.</figcaption>
+      </figure>
+
+      <h2>Design choices</h2>
+      <table>
+        <thead>
+          <tr><th>Choice</th><th>Why it matters</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>U-Net</td><td>Preserves high-resolution spatial output while using deeper context.</td></tr>
+          <tr><td>Dimensionless target</td><td>Normalizes labels by a physical scale before learning.</td></tr>
+          <tr><td>Closed-pixel mask</td><td>Prevents predictions from treating solid regions like open flow.</td></tr>
+          <tr><td>Symmetry averaging</td><td>Uses horizontal, vertical, and 180-degree transformations to stabilize predictions.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Output</h2>
+      <p>
+        The cleaned repository keeps the model and inference code used to generate field predictions and submission-style
+        CSV outputs. It excludes datasets, local training artifacts, and generated model checkpoints.
+      </p>
+
+      <hr>
+      <p>
+        Public repository: <a href="https://github.com/Tne-5/porous-media-flow-unet">Tne-5/porous-media-flow-unet</a>.
+      </p>
+    </article>
   </main>
+
+  <footer>
+    <a href="../index.html#projects">Projects</a>
+    <span>/</span>
+    <a href="https://github.com/Tne-5">GitHub</a>
+  </footer>
 </body>
 </html>

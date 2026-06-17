@@ -3,217 +3,95 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A project archive for applied data science, machine learning, computer vision, geospatial modeling, and technical prototypes by Tne-5.">
-  <title>Tne-5 Project Archive</title>
+  <meta name="description" content="Project notes by Tiago Fernandez-Nespral. Applied data science, machine learning, computer vision, and geospatial modeling.">
+  <title>Tiago Fernandez-Nespral</title>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="archive-page">
+<body>
   <header class="site-header">
-    <nav class="nav" aria-label="Primary">
-      <a class="brand" href="index.html">Tne-5</a>
-      <div class="nav-links">
-        <a href="#project-index">Projects</a>
-        <a href="projects/burglary-hotspot.html">Burglary case study</a>
-        <a href="https://github.com/Tne-5">GitHub</a>
-      </div>
+    <a class="site-title" href="index.html">Tiago Fernandez-Nespral</a>
+    <nav aria-label="Site links">
+      <a href="#projects">Projects</a>
+      <a href="https://github.com/Tne-5">GitHub</a>
+      <a href="https://www.linkedin.com/in/tnespral/">LinkedIn</a>
     </nav>
   </header>
 
   <main>
-    <section class="archive-hero">
-      <div class="wrap archive-hero-grid">
-        <div class="archive-copy">
-          <p class="eyebrow">Project archive</p>
-          <h1>Applied data systems, written up as working projects.</h1>
-          <p class="lead">
-            This site is a lab notebook for shipped student work: the task, the data, the modeling choices,
-            the tradeoffs, the results, and the code paths that made each project real.
+    <article class="intro">
+      <h1>Welcome</h1>
+      <p>
+        Hi. I am a Data Science student at TU/e. This site is a small archive of projects I have built:
+        applied ML systems, geospatial models, computer vision pipelines, and practical prototypes.
+      </p>
+      <p>Mostly notes on what the problem was, how the system works, and what I learned while building it.</p>
+    </article>
+
+    <section id="projects" class="project-index">
+      <h2>Projects</h2>
+
+      <article class="project-row">
+        <time>Year 2</time>
+        <div>
+          <h3><a href="projects/twitter-chatbot.html">Airline Twitter Complaint Chatbot</a></h3>
+          <ul class="tags">
+            <li>nlp</li>
+            <li>side-project</li>
+          </ul>
+          <p>
+            A complaint-triage prototype that filters noisy airline tweets, classifies issue type, and drafts support-style responses.
           </p>
         </div>
-        <div class="atlas-visual" aria-label="Project map visual">
-          <svg viewBox="0 0 560 420" role="img" aria-label="A connected map of project areas">
-            <rect class="atlas-bg" x="0" y="0" width="560" height="420"/>
-            <g class="atlas-grid">
-              <path d="M40 70 H520 M40 130 H520 M40 190 H520 M40 250 H520 M40 310 H520 M40 370 H520"/>
-              <path d="M80 36 V384 M160 36 V384 M240 36 V384 M320 36 V384 M400 36 V384 M480 36 V384"/>
-            </g>
-            <path class="atlas-line atlas-line-one" d="M96 288 C160 204 212 210 266 154 C330 88 388 104 458 72"/>
-            <path class="atlas-line atlas-line-two" d="M116 106 C184 154 238 112 292 198 C344 280 402 264 480 334"/>
-            <g class="atlas-node atlas-node-a">
-              <circle cx="96" cy="288" r="24"/>
-              <text x="96" y="293">CV</text>
-            </g>
-            <g class="atlas-node atlas-node-b">
-              <circle cx="266" cy="154" r="30"/>
-              <text x="266" y="159">Geo</text>
-            </g>
-            <g class="atlas-node atlas-node-c">
-              <circle cx="458" cy="72" r="22"/>
-              <text x="458" y="77">ML</text>
-            </g>
-            <g class="atlas-node atlas-node-d">
-              <circle cx="116" cy="106" r="22"/>
-              <text x="116" y="111">NLP</text>
-            </g>
-            <g class="atlas-node atlas-node-e">
-              <circle cx="480" cy="334" r="28"/>
-              <text x="480" y="339">Pipe</text>
-            </g>
-            <g class="atlas-scan">
-              <rect x="44" y="42" width="472" height="42"/>
-            </g>
-          </svg>
+      </article>
+
+      <article class="project-row">
+        <time>Year 3</time>
+        <div>
+          <h3><a href="projects/burglary-hotspot.html">Burglary Hotspot Forecasting</a></h3>
+          <ul class="tags">
+            <li>academic</li>
+            <li>geospatial-ml</li>
+          </ul>
+          <p>
+            A London residential burglary forecasting system using 500m grid cells, ConvLSTM modeling, and patrol allocation.
+          </p>
         </div>
-      </div>
-    </section>
+      </article>
 
-    <section class="wrap archive-shell" id="project-index">
-      <aside class="explorer-panel" aria-label="Project explorer">
-        <h2>Explorer</h2>
-        <a href="projects/burglary-hotspot.html">Burglary hotspot forecasting</a>
-        <a href="projects/coral-bleaching.html">Coral bleaching computer vision</a>
-        <a href="projects/porous-media-flow.html">Porous media flow U-Net</a>
-        <a href="projects/twitter-chatbot.html">Airline complaint chatbot</a>
-        <div class="explorer-note">
-          <strong>Format</strong>
-          <span>Each project page is being expanded into a case study with diagrams, process notes, evaluation, and a cleaned repository.</span>
+      <article class="project-row">
+        <time>Year 4</time>
+        <div>
+          <h3><a href="projects/coral-bleaching.html">Coral Bleaching Computer Vision</a></h3>
+          <ul class="tags">
+            <li>computer-vision</li>
+            <li>pytorch</li>
+          </ul>
+          <p>
+            A ResNet18 image-classification pipeline adapted with a saturation channel and attention-style inspection outputs.
+          </p>
         </div>
-      </aside>
+      </article>
 
-      <div class="archive-feed">
-        <div class="section-head compact">
-          <div>
-            <p class="eyebrow">Case studies</p>
-            <h2>Projects</h2>
-          </div>
-          <p>Ordered by how well they show applied modeling, ambiguous problem solving, and useful technical outputs.</p>
+      <article class="project-row">
+        <time>Year 4</time>
+        <div>
+          <h3><a href="projects/porous-media-flow.html">Machine Learning: Porous Media Flow</a></h3>
+          <ul class="tags">
+            <li>machine-learning</li>
+            <li>u-net</li>
+          </ul>
+          <p>
+            A structured regression project predicting flow fields through porous cross-sections with CNN and U-Net models.
+          </p>
         </div>
-
-        <article class="project-entry featured-project">
-          <figure class="entry-visual burglary-thumb" aria-label="Animated burglary hotspot grid">
-            <div class="thumb-grid" aria-hidden="true">
-              <span></span><span></span><span class="warm"></span><span></span><span></span><span></span>
-              <span></span><span class="risk"></span><span class="hot"></span><span></span><span></span><span></span>
-              <span></span><span></span><span class="warm"></span><span></span><span class="risk"></span><span></span>
-              <span></span><span></span><span></span><span></span><span class="hot"></span><span class="warm"></span>
-              <span></span><span class="risk"></span><span></span><span></span><span></span><span></span>
-            </div>
-            <svg viewBox="0 0 460 230" aria-hidden="true">
-              <path class="route-path" d="M42 178 C92 126 142 154 190 104 C252 42 316 70 402 46"/>
-              <circle class="route-dot" cx="42" cy="178" r="7"/>
-              <circle class="route-dot delay-one" cx="190" cy="104" r="7"/>
-              <circle class="route-dot delay-two" cx="402" cy="46" r="7"/>
-            </svg>
-          </figure>
-          <div class="entry-body">
-            <p class="entry-kicker">Geospatial ML - ConvLSTM - MILP allocation</p>
-            <h3>Burglary Hotspot Forecasting</h3>
-            <p>
-              A London residential burglary project that forecasts next-month risk on 500m grid cells,
-              then turns predicted hotspots into police patrol demand with residential-area filtering and optimization.
-            </p>
-            <div class="entry-facts">
-              <span>500m grid</span>
-              <span>3-month sequences</span>
-              <span>0.801 macro F1</span>
-              <span>Streamlit dashboard</span>
-            </div>
-            <div class="entry-actions">
-              <a class="button" href="projects/burglary-hotspot.html">Open case study</a>
-              <a class="button secondary" href="https://github.com/Tne-5/burglary-hotspot-forecasting">Repository</a>
-            </div>
-          </div>
-        </article>
-
-        <div class="project-list">
-          <article class="project-entry">
-            <figure class="entry-visual coral-thumb" aria-label="Coral bleaching model visual">
-              <svg viewBox="0 0 460 230" role="img" aria-label="Coral image model layers">
-                <rect class="soft-panel" width="460" height="230"/>
-                <path class="coral-branch" d="M70 176 C92 126 86 84 126 58 M126 112 C160 76 176 70 204 38 M128 120 C176 144 196 172 244 186 M92 156 C134 166 146 202 178 212"/>
-                <rect x="272" y="52" width="112" height="84" rx="8" class="dark-chip"/>
-                <path class="signal-line" d="M292 112 L314 90 L336 102 L362 70"/>
-                <circle class="focus-dot" cx="130" cy="112" r="18"/>
-                <circle class="focus-dot alt" cx="202" cy="58" r="12"/>
-              </svg>
-            </figure>
-            <div class="entry-body">
-              <p class="entry-kicker">Computer vision - PyTorch - model interpretation</p>
-              <h3>Coral Bleaching Computer Vision</h3>
-              <p>
-                A ResNet18-based classifier for coral bleaching imagery, extended with saturation-aware inputs,
-                attention pooling, focal/BCE loss experiments, and heatmap outputs for model inspection.
-              </p>
-              <div class="entry-actions">
-                <a class="button secondary" href="projects/coral-bleaching.html">Read project</a>
-                <a class="text-link" href="https://github.com/Tne-5/coral-bleaching-cv">Repository</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-entry">
-            <figure class="entry-visual porous-thumb" aria-label="Porous media flow prediction visual">
-              <svg viewBox="0 0 460 230" role="img" aria-label="Flow field across porous blocks">
-                <rect class="soft-panel" width="460" height="230"/>
-                <g class="porous-blocks">
-                  <rect x="58" y="46" width="28" height="28"/>
-                  <rect x="124" y="104" width="30" height="30"/>
-                  <rect x="198" y="66" width="26" height="26"/>
-                  <rect x="278" y="130" width="30" height="30"/>
-                  <rect x="348" y="74" width="28" height="28"/>
-                </g>
-                <path class="flow-line main" d="M36 166 C112 116 154 162 226 106 C294 52 354 76 424 42"/>
-                <path class="flow-line secondary" d="M36 126 C118 84 164 112 230 82 C306 46 362 110 424 92"/>
-              </svg>
-            </figure>
-            <div class="entry-body">
-              <p class="entry-kicker">Scientific ML - U-Net - physics data</p>
-              <h3>Porous Media Flow U-Net</h3>
-              <p>
-                CNN and U-Net experiments for predicting flow fields through porous cross-sections, with symmetry-aware
-                ensembling and a focus on converting model outputs into usable field predictions.
-              </p>
-              <div class="entry-actions">
-                <a class="button secondary" href="projects/porous-media-flow.html">Read project</a>
-                <a class="text-link" href="https://github.com/Tne-5/porous-media-flow-unet">Repository</a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-entry">
-            <figure class="entry-visual bot-thumb" aria-label="Automated complaint chatbot visual">
-              <svg viewBox="0 0 460 230" role="img" aria-label="Messages routed through a chatbot pipeline">
-                <rect class="soft-panel" width="460" height="230"/>
-                <rect x="58" y="56" width="142" height="58" rx="8" class="message-one"/>
-                <rect x="258" y="116" width="142" height="62" rx="8" class="message-two"/>
-                <path class="bot-connector" d="M202 88 C240 88 236 144 258 144"/>
-                <circle cx="90" cy="86" r="6"/><circle cx="112" cy="86" r="6"/><circle cx="134" cy="86" r="6"/>
-                <path class="message-line" d="M286 144 H370 M286 160 H344"/>
-              </svg>
-            </figure>
-            <div class="entry-body">
-              <p class="entry-kicker">NLP automation - transformers - MongoDB</p>
-              <h3>Airline Complaint Twitter Chatbot</h3>
-              <p>
-                A cleaned public version of an automated airline-support prototype using tweet ingestion, sentiment filtering,
-                zero-shot complaint routing, and response generation logic.
-              </p>
-              <div class="entry-actions">
-                <a class="button secondary" href="projects/twitter-chatbot.html">Read project</a>
-                <a class="text-link" href="https://github.com/Tne-5/airline-complaint-twitter-chatbot">Repository</a>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
+      </article>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap footer-line">
-      <span>Tne-5 project archive</span>
-      <span><a href="https://github.com/Tne-5">GitHub</a> / <a href="https://www.linkedin.com/in/tnespral/">LinkedIn</a></span>
-    </div>
+  <footer>
+    <a href="https://github.com/Tne-5">GitHub</a>
+    <span>/</span>
+    <a href="https://www.linkedin.com/in/tnespral/">LinkedIn</a>
   </footer>
 </body>
 </html>
