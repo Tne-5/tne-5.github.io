@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A detailed case study on coral bleaching classification with PyTorch, ResNet18, saturation-channel input, masked attention pooling, and model inspection outputs.">
+  <title>Coral Bleaching Computer Vision - Tne-5 Project Archive</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="case-page coral-case">
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="../index.html">Tne-5</a>
+      <div class="nav-links">
+        <a href="../index.html#project-index">Projects</a>
+        <a href="https://github.com/Tne-5/coral-bleaching-cv">Repository</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="case-hero">
+      <div class="wrap case-hero-grid">
+        <div>
+          <a class="back-link" href="../index.html#project-index">Back to projects</a>
+          <p class="eyebrow">Computer vision / PyTorch / DC3</p>
+          <h1>Detecting coral bleaching with a model that can be inspected.</h1>
+          <p class="lead">
+            The goal was to classify coral imagery as bleached or unbleached while handling the real messiness of
+            underwater images: color shifts, duplicate photos, borders, inconsistent framing, and ambiguous labels.
+          </p>
+          <div class="entry-facts case-facts">
+            <span>ResNet18 backbone</span>
+            <span>HSV saturation channel</span>
+            <span>Masked attention pooling</span>
+            <span>0.969 test AUC</span>
+          </div>
+        </div>
+
+        <figure class="risk-map-figure" aria-label="Stylized coral model visual">
+          <svg viewBox="0 0 520 340" role="img" aria-label="Coral branches flowing into model layers and a prediction signal">
+            <rect width="520" height="340" fill="#fffdf8"/>
+            <g fill="none" stroke-linecap="round">
+              <path d="M92 276 C116 208 104 152 154 102" stroke="#d95f45" stroke-width="18"/>
+              <path d="M154 166 C204 132 220 94 264 54" stroke="#d95f45" stroke-width="14"/>
+              <path d="M154 178 C210 196 236 238 292 262" stroke="#d95f45" stroke-width="14"/>
+              <path d="M112 238 C164 250 174 300 224 316" stroke="#d95f45" stroke-width="12"/>
+              <path d="M82 282 C134 218 186 212 236 170 C290 124 328 108 382 74" stroke="#087f7a" stroke-width="7" stroke-dasharray="18 13"/>
+            </g>
+            <g>
+              <rect x="316" y="98" width="128" height="88" rx="8" fill="#171a21"/>
+              <path d="M340 154 L362 130 L386 144 L420 112" fill="none" stroke="#fffdf8" stroke-width="7" stroke-linecap="round"/>
+              <rect x="338" y="210" width="86" height="18" rx="8" fill="#087f7a"/>
+              <rect x="338" y="238" width="132" height="18" rx="8" fill="#315fbe"/>
+            </g>
+            <circle cx="154" cy="166" r="28" fill="rgba(8,127,122,0.18)" stroke="#087f7a" stroke-width="4"/>
+            <circle cx="264" cy="54" r="18" fill="rgba(49,95,190,0.18)" stroke="#315fbe" stroke-width="3"/>
+          </svg>
+          <figcaption>Domain signal, model attention, and prediction output shown as a compact system sketch.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <div class="wrap case-layout">
+      <aside class="case-toc" aria-label="Case study sections">
+        <h2>On this page</h2>
+        <a href="#brief">Task</a>
+        <a href="#pipeline">Pipeline</a>
+        <a href="#model">Model</a>
+        <a href="#results">Results</a>
+        <a href="#repository">Repository</a>
+      </aside>
+
+      <article class="case-study">
+        <section class="case-section" id="brief">
+          <p class="eyebrow">Project brief</p>
+          <h2>Not just a final score</h2>
+          <p>
+            Coral bleaching detection sounds like a normal image-classification task until the data starts pushing back.
+            Underwater lighting changes the apparent color of healthy coral, black borders can become accidental model
+            shortcuts, and near-duplicate images can inflate validation performance if the split is careless.
+          </p>
+          <blockquote>
+            The practical target was a training pipeline that could be rerun, audited, and inspected, not a notebook with
+            a single impressive metric.
+          </blockquote>
+          <div class="signal-grid">
+            <div><strong>4</strong><span>input channels: RGB plus HSV saturation as a domain-relevant color signal.</span></div>
+            <div><strong>0.969</strong><span>test AUC reported by the final run.</span></div>
+            <div><strong>3</strong><span>clean splits: train, validation, and test with leakage control in mind.</span></div>
+          </div>
+        </section>
+
+        <section class="case-section" id="pipeline">
+          <p class="eyebrow">Data pipeline</p>
+          <h2>Make the image folders trustworthy first</h2>
+          <p>
+            The repository separates data preparation from model training. The preparation step converts labels into a
+            clean folder structure, removes obvious duplicates, standardizes image handling, and keeps generated outputs
+            out of Git.
+          </p>
+          <div class="pipeline-strip" aria-label="Coral data pipeline">
+            <div><span>01</span><strong>Collect</strong><p>Load labeled coral imagery from local data folders or CSV mappings.</p></div>
+            <div><span>02</span><strong>Clean</strong><p>Prune duplicate files and normalize folder structure for reproducible runs.</p></div>
+            <div><span>03</span><strong>Transform</strong><p>Resize, augment, and compute HSV saturation as a fourth input channel.</p></div>
+            <div><span>04</span><strong>Train</strong><p>Fit a modified ResNet18 with BCE and focal-loss experiments.</p></div>
+            <div><span>05</span><strong>Inspect</strong><p>Export predictions, metrics, and heatmap-style attention outputs.</p></div>
+          </div>
+        </section>
+
+        <section class="case-section" id="model">
+          <p class="eyebrow">Model design</p>
+          <h2>A small architecture change with a domain reason</h2>
+          <p>
+            The model uses a ResNet18 backbone, but the first convolution is adapted to accept four channels. RGB carries
+            normal visual appearance, while HSV saturation gives the model a direct signal related to bleaching and color
+            loss. Masked attention pooling helps reduce the chance that borders or invalid pixels dominate the final
+            representation.
+          </p>
+          <pre><code>image folders
+  -> grouped split
+  -> RGB + saturation transforms
+  -> ResNet18 first conv expanded to 4 channels
+  -> masked attention pooling
+  -> BCE / focal-loss training
+  -> AUC, heatmaps, prediction CSV</code></pre>
+          <div class="feature-matrix">
+            <div><h3>Leakage control</h3><p>Grouped splits reduce the chance that near-duplicates appear across train and test.</p></div>
+            <div><h3>Domain feature</h3><p>Saturation is explicit rather than hoping RGB filters discover the relevant bleaching cue alone.</p></div>
+            <div><h3>Inspection path</h3><p>Prediction CSVs and heatmaps make model behavior easier to review after training.</p></div>
+          </div>
+        </section>
+
+        <section class="case-section" id="results">
+          <p class="eyebrow">Evaluation</p>
+          <h2>Strong test AUC, with visible model outputs</h2>
+          <p>
+            The final run reached a 0.969 AUC on the test split. The more important engineering habit is that the score
+            is not left alone: the code also supports prediction exports and heatmap-style visual checks so the result can
+            be interpreted rather than simply reported.
+          </p>
+          <div class="result-board">
+            <div class="result-card"><strong>0.969</strong><span>test AUC</span></div>
+            <div class="result-card"><strong>4-ch</strong><span>RGB plus saturation input</span></div>
+            <div class="result-card"><strong>AUC</strong><span>validation checkpointing target</span></div>
+            <div class="result-card"><strong>CSV</strong><span>reviewable prediction output</span></div>
+          </div>
+        </section>
+
+        <section class="case-section" id="repository">
+          <p class="eyebrow">Public code</p>
+          <h2>Clean repository structure</h2>
+          <p>
+            The public repository intentionally excludes the image dataset, trained weights, generated heatmaps, and local
+            outputs. It keeps the reusable model code, data-preparation utility, requirements, and README so reviewers can
+            understand the pipeline without downloading private or heavy artifacts.
+          </p>
+          <pre><code>src/coral_model.py
+  model definition
+  transforms
+  losses
+  training and evaluation loop
+
+src/prepare_folders.py
+  label-to-folder preparation</code></pre>
+          <div class="entry-actions">
+            <a class="button" href="https://github.com/Tne-5/coral-bleaching-cv">Open repository</a>
+            <a class="button secondary" href="../index.html#project-index">Back to project index</a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-line">
+      <span>Coral bleaching computer vision case study</span>
+      <span><a href="../index.html#project-index">Project index</a></span>
+    </div>
+  </footer>
+</body>
+</html>

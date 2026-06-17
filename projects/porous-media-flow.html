@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Porous media flow U-Net project page.">
+  <title>Porous Media Flow U-Net - Tne-5 Project Archive</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="../index.html">Tne-5</a>
+      <div class="nav-links">
+        <a href="../index.html#project-index">Projects</a>
+        <a href="https://github.com/Tne-5/porous-media-flow-unet">Repository</a>
+      </div>
+    </nav>
+  </header>
+  <main class="wrap">
+    <section class="project-title">
+      <p class="eyebrow">Machine Learning final assignment / PyTorch</p>
+      <h1>Porous Media Flow U-Net</h1>
+      <p class="lead">A structured image-to-image regression project for predicting flow fields through porous cross-sections.</p>
+    </section>
+    <section class="project-page detail-grid">
+      <div>
+        <h2>Problem</h2>
+        <p>Given binary cross-section masks and physical parameters, predict the full 2D flow field through a porous medium.</p>
+        <h2>Approach</h2>
+        <p>The cleaned implementation normalizes labels by a physical scale, trains U-Net variants, masks closed pixels, and averages predictions over horizontal, vertical, and 180-degree symmetries.</p>
+        <pre><code>mask + parameters -> physical scaling q0
+                  -> dimensionless target q*
+                  -> U-Net prediction
+                  -> symmetry-averaged output</code></pre>
+      </div>
+      <aside class="panel">
+        <h2>Highlights</h2>
+        <ul>
+          <li>Structured image-to-image regression</li>
+          <li>Dimensionless target normalization</li>
+          <li>Custom boundary-channel U-Net</li>
+          <li>Symmetry-aware ensembling</li>
+        </ul>
+        <p><a class="repo-link" href="https://github.com/Tne-5/porous-media-flow-unet">Open repository</a></p>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>

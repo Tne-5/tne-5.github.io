@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Burglary hotspot forecasting case study using London crime data, 500m grids, ConvLSTM modeling, and patrol allocation.">
+  <title>Burglary Hotspot Forecasting - Tne-5 Project Archive</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="case-page">
+  <header class="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a class="brand" href="../index.html">Tne-5</a>
+      <div class="nav-links">
+        <a href="../index.html#project-index">Projects</a>
+        <a href="https://github.com/Tne-5/burglary-hotspot-forecasting">Repository</a>
+      </div>
+    </nav>
+  </header>
+  <main class="wrap">
+    <section class="project-title">
+      <p class="eyebrow">Geospatial ML / ConvLSTM / CBL Crime and Security</p>
+      <h1>Burglary Hotspot Forecasting</h1>
+      <p class="lead">A London residential burglary project that turns monthly crime records into 500m grid predictions and patrol-demand estimates.</p>
+    </section>
+    <section class="project-page detail-grid">
+      <div>
+        <h2>Task</h2>
+        <p>The project asked how police demand could be estimated automatically so limited patrol capacity could be directed toward high-risk residential burglary areas.</p>
+        <h2>Approach</h2>
+        <p>The pipeline groups Police.uk burglary records by month, enriches them with weather and socioeconomic features, projects locations to a metric CRS, builds 500m grid labels, and trains a ConvLSTM on three-month spatial sequences.</p>
+        <pre><code>crime records -> monthly LSOA grouping -> external features
+              -> 500m grid tensors -> ConvLSTM
+              -> thresholded hotspots -> residential-area allocation</code></pre>
+        <h2>Result</h2>
+        <p>The report-level evaluation showed 82.96% accuracy, 0.8716 recall for burglary cells, 0.7258 F1 for burglary cells, and 0.8374 weighted F1. The prototype also included a Streamlit-style patrol allocation workflow.</p>
+      </div>
+      <aside class="panel">
+        <h2>Stack</h2>
+        <ul>
+          <li>Python, pandas, GeoPandas, Shapely</li>
+          <li>PyTorch ConvLSTM</li>
+          <li>500m spatial grid classification</li>
+          <li>Residential land-use filtering</li>
+          <li>PuLP-style allocation logic</li>
+        </ul>
+        <p><a class="repo-link" href="https://github.com/Tne-5/burglary-hotspot-forecasting">Open repository</a></p>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>
